@@ -1,4 +1,4 @@
-# Web Emoji
+# Web Emagi
 
 ### A Walkthrough
 
@@ -26,7 +26,7 @@ If you're not familiar with the term, "radio buttons" are mutually exclusive but
 * Like input boxes, radio buttons have a `.value` property, which is just the string in the `value` attribute in their tag. (Check `index.html` to see!) In our loop, when we're at the radio button that has the `checked` property set to `true`, grab the `.value` of that particular radio button and save it in a variable outside the loop somewhere. (If you declare the variable in the loop, it will be scoped to the loop and disappear afterwards!)
     * Instead of saving it in a variable outside the loop, we COULD write a helper function that does this looping-through-the-elements code, and have it return the `.value` of the checked item, which you could then store in a variable. Either way!
 * Now write some `switch` or `if-else` logic to decide between printing the result of running the user's input through `translate` or `encode`, depending on which item was checked (which should, again, be stored as a string in the contents of your variable!)
-* Test that you c an click the "Encode" radio button and get an emoji for each letter, and then try clicking the "Translate" button and hitting submit. Try the text "I heart phone" in your input box--you should get a heart and a phone emoji!
+* Test that you can click the "Encode" radio button and get an emoji for each letter, and then try clicking the "Translate" button and hitting submit. Try the text "I heart phone" in your input box--you should get a heart and a phone emoji!
 * If that works, extend this logic to include `madlib`, which also just takes in the user's input string and gives you back the result. (Test that one via the text "When I see you face I need a drink". You should get a random face and a random drink!)
 
 
