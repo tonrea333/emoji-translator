@@ -6,7 +6,7 @@
 
 ##### The Basic Structure
 
-* The first step is to query the submit button on our page. It's got an id already, so it should be faaaairly easy.
+* The first step is to query the submit button on our page. You can use its ID for this.
 * Add an event listener function to it. You could do this as an anonymous inline function or a named function. But the important thing is: **every code we write for this app will go in this function!** That's because we only have one time we have to DO something in our app, and that's when the user hits that submit button. Then we wait for them to press it again. That's it!
 
 ##### Our First Feature
