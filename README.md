@@ -1,5 +1,7 @@
 # Web Emagi
 
+> In this project, we'll work with HTML `input` elements in the form of text inputs and radio check buttons. In our finished application, the user will type something into the input box, select one of the options from the radio buttons, then click 'submit'. Depending on the selected radio button, some kind of result will be calculated and displayed back to the user underneath.
+
 ### A Walkthrough
 
 ##### The Basic Structure
@@ -30,7 +32,7 @@ If you're not familiar with the term, "radio buttons" are mutually exclusive but
 * If that works, extend this logic to include `madlib`, which also just takes in the user's input string and gives you back the result. (Test that one via the text "When I see you face I need a drink". You should get a random face and a random drink!)
 
 
-##### The Random Feature.
+##### The Random Feature
 
 For the case of random we want to do a random emoji from a category if they've typed in a category, otherwise we'll do a random emoji from the whole list. `randomElement` expects an array, so we just need to give it an array of the whole emojis or an array of the categories and we'll have it!
 
@@ -39,17 +41,15 @@ For the case of random we want to do a random emoji from a category if they've t
 * If that array has some elements, then we want to do the same thing, but give `randomElement` the smaller, filtered-down categories array.
 * Test it by typing in a category like "animal" or "face", and hit submit a few times to make sure it's the only kind of emoji you get. Then try it with a non-category word (or nothing at all)--you should see a random emoji from all categories, if you nailed this one.
 
-
 ##### Search
 
 For search, we'll want to print every single emoji that matches the search criteria.
 
-* Calling `search` on our user's input will return a filtered emojis array where the emoji's name includes their search string. Save that returned array. It's looping time!
-* Because there may be multiple results, on each loop we can't just set the results' heading's `innerText`, or we'll overwrite whatever used to be there. Instead, make a new paragraph for each item in our filtered-down array, set its inner text to be that particular emoji's `symbol` property, and then append that paragraph to the results section.
-* And because there may be multiple results, we'll want to erase any results from previous submissions. This wasn't an issue for previous problems, as they reassigned the innerText to their new answer, but now we're building a list of paragraphs and appending as necessary. It's like the difference between reassigning a new value to a variable vs. pushing into a new array; if you want the array to hold only your new values, you'll need to remove everything else first, while the number can, by nature, only hold one value; changing its value is easy. In order to fix this issue, **there's a pretty easy solution**: before printing out your results, set the output area's `innerHTML` to an empty string. That will get rid of ALL children for that element, so you can replace it with the new results.. It's a blunt tool solution, but it's more than enough for our needs!
-* Okay, let's try searching with something like `corn`, which should give you unicorn and popcorn symbols, or the letter y, which should give you 8 emojis.
-* Finally, wrap that in an if/else, because we'll want to simply print out that there were no results if the array has no elements in it at all.
-
+* Calling `search` on our user's input will return an array of objects. Use `console.log` or look at `emojis.js` to see the format of these objects. Each object will have a `symbol` property which will contain the emoji that matches the search criteria.
+* After retrieving this array, loop through it, get each emoji, wrap it in a `<p>` tag, and then append it as a child to our `<h1 id="results"></h1>` element.
+* Before doing this, make sure to clear the content of the `<h1 id="results"></h1>` element (hint: use its `.innerHTML` property)
+* Okay, let's try searching with something like `corn`, which should give you unicorn and popcorn symbols. Or try the letter y, which should give you 8 emojis.
+* Finally, if no emojis match our search, instead of doing the above steps, simply display a message to the user in the  `<h1 id="results"></h1>` element that says no emojis were found.
 
 ### Stretch Goals
 
