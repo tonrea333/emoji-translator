@@ -12,7 +12,7 @@
 Let's start with `encode`.
 
 * First, we need to query our input box. Check it out in the HTML--it's the one with the id `emagi-input`.
-* Once we've queried that element and have it in our JavaScript, type something into the text box and then inspect the element in your browser (`console.log` can do this, or you can do it with the dev tools themselves), and you'll see that it has a property `value` that holds the text you wrote in. Grab that `.value` property and save it in a variable--maybe call it `userInput`?
+* Once we've queried that element, grab its `.value` property containing the input's contents and store it in a variable.
 * There's an `h1` in our html with the id `results`--this is where we'll put our output to our user. Query that element and save it to a variable.
 * Now set its innerText to the result of passing the input to `encode`. **Note: this function is available to you globally because it's sourced in _first_ in your html file. Check it out at the bottom of the file; we have a LOT of script tags here!**
 * Test it out. Try typing something into the input box and hitting submit. You should see an emoji for every letter you typed in!
