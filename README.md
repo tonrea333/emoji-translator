@@ -1,4 +1,4 @@
-# Web Emagi
+# Emoji Translator
 
 > In this project, we'll work with HTML `input` elements in the form of text inputs and radio check buttons. In our finished application, the user will type something into the input box, select one of the options from the radio buttons, then click 'submit'. Depending on the selected radio button, some kind of result will be calculated and displayed back to the user underneath.
 
@@ -83,8 +83,6 @@ translation (either encode, madlib, translate, or search) and execute that
 functionality!
 
 To do this, remember that `Math.random()` will return a number between 0 and 1. You can adapt this to create a random integer generator (as seen in the dice rolling assignment).
-
-
 
 
 ### Stretch Goals
