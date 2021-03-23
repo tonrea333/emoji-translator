@@ -2,14 +2,14 @@
 
 > In this project, we'll work with HTML `input` elements in the form of text inputs and radio check buttons. In our finished application, the user will type something into the input box, select one of the options from the radio buttons, then click 'submit'. Depending on the selected radio button, some kind of result will be calculated and displayed back to the user underneath.
 
-### A Walkthrough
+## A Walkthrough
 
-##### The Basic Structure
+#### The Basic Structure
 
 * The first step is to query the submit button on our page. You can use its ID for this.
 * Add an event listener function to it. You could do this as an anonymous inline function or a named function. But the important thing is: **every code we write for this app will go in this function!** That's because we only have one time we have to DO something in our app, and that's when the user hits that submit button. Then we wait for them to press it again. That's it!
 
-##### Our First Feature
+#### Our First Feature
 
 Let's start with `encode`.
 
@@ -19,7 +19,7 @@ Let's start with `encode`.
 * Now set its `.innerText` to the result of passing the input to `encode`. **Note: this function is available to you globally because it's sourced in _first_ in your html file. Check it out at the bottom of the file; we have a LOT of script tags here!**
 * Test it out. Try typing something into the input box and hitting submit. You should see an emoji for every letter you typed in!
 
-##### Radio Buttons
+#### Radio Buttons
 
 If you're not familiar with the term, "radio buttons" are mutually exclusive buttons. In this case, there's one for every feature of our app. Let's use them to let the user select which feature to use!
 
@@ -50,7 +50,7 @@ To test that your functions are working, here are a few examples you can use:
 
 ```
 
-##### Search
+#### Search
 
 The search feature is going to work a bit differently from the previous three
 translation methods.
@@ -76,7 +76,7 @@ For search, we'll want to print every single emoji that matches the search crite
 
 Test out your serach feature with something like `corn`, which should give you unicorn and popcorn emojis. Or try the letter y, which should give you 8 emojis.
 
-##### Random
+#### Random
 
 Finally, the random feature! The random feature should select a random other
 translation (either encode, madlib, translate, or search) and execute that
@@ -84,8 +84,7 @@ functionality!
 
 To do this, remember that `Math.random()` will return a number between 0 and 1. You can adapt this to create a random integer generator (as seen in the dice rolling assignment).
 
-
-### Stretch Goals
+#### Stretch Goals
 
 * Change the event listener so that it fires when they type something. You'll want to add it as an event listener on the input box, not the button. But what event? That's up to you to figure out! If you get this one done, you can get rid of the submit button, since it's totally unneeded!
 * Let's add some help text for the user to explain these five fabulous functions. But with the twist of only showing the help text when they want it, hiding it otherwise. We'll make a collapsible html element with a toggle to show or hide it.
