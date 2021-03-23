@@ -16,40 +16,76 @@ Let's start with `encode`.
 * First, we need to query our input box. Check it out in the HTML--it's the one with the id `emagi-input`.
 * Once we've queried that element, grab its `.value` property containing the input's contents and store it in a variable.
 * There's an `h1` in our html with the id `results`--this is where we'll put our output to our user. Query that element and save it to a variable.
-* Now set its innerText to the result of passing the input to `encode`. **Note: this function is available to you globally because it's sourced in _first_ in your html file. Check it out at the bottom of the file; we have a LOT of script tags here!**
+* Now set its `.innerText` to the result of passing the input to `encode`. **Note: this function is available to you globally because it's sourced in _first_ in your html file. Check it out at the bottom of the file; we have a LOT of script tags here!**
 * Test it out. Try typing something into the input box and hitting submit. You should see an emoji for every letter you typed in!
 
 ##### Radio Buttons
 
 If you're not familiar with the term, "radio buttons" are mutually exclusive buttons. In this case, there's one for every feature of our app. Let's use them to let the user select which feature to use!
 
-* Query ALL the radio buttons using `querySelectorAll` and the query `.radio-button`, one of the classes set on each of the buttons in our `index.html` file. This will return an array-like set of elements. If you access those elements at index 0, you'll get the first one, at 1 the next, and so on. Let's loop!
-* Loop through the elements (a `for of` will do it, no need for `i`!), and if any of their `.checked` property is true, that's the one the user has selected. (If you check the HTML file or the DOM, you'll see that one has the `checked` property by default. If you change one, you can watch the DOM change to match.)
-* Like input boxes, radio buttons have a `.value` property, which is just the string in the `value` attribute in their tag. (Check `index.html` to see!) In our loop, when we're at the radio button that has the `checked` property set to `true`, grab the `.value` of that particular radio button and save it in a variable outside the loop somewhere. (If you declare the variable in the loop, it will be scoped to the loop and disappear afterwards!)
-    * Instead of saving it in a variable outside the loop, we COULD write a helper function that does this looping-through-the-elements code, and have it return the `.value` of the checked item, which you could then store in a variable. Either way!
-* Now write some `switch` or `if-else` logic to decide between printing the result of running the user's input through `translate` or `encode`, depending on which item was checked (which should, again, be stored as a string in the contents of your variable!)
-* Test that you can click the "Encode" radio button and get an emoji for each letter, and then try clicking the "Translate" button and hitting submit. Try the text "I heart phone" in your input box--you should get a heart and a phone emoji!
-* If that works, extend this logic to include `madlib`, which also just takes in the user's input string and gives you back the result. (Test that one via the text "When I see you face I need a drink". You should get a random face and a random drink!)
+To determine which radio button is pressed, we need to select ALL the radio buttons
+in the group, and loop through them. If a radio button is checked, its `.checked`
+property will be equal to `true`. (hint: use `querySelectorAll` and a `for` loop).
 
+Once you've determined which radio button was checked, you can determine its "value" with the `.value` property! In the case of the "Encode" radio button,
+this will be `"encode"`. You can view the values of the other radio buttons in
+the HTML.
 
-##### The Random Feature
+With this radio button value, you should know which operation you 'translation'
+function you should apply to the user's input text. If the value is `"encode"`,
+run the `encode()` function (defined in `encode.js`), if the value is`"madlib"`,
+run the `madlib()` function (defined in `madlib.js`), etc.
 
-For the case of random we want to do a random emoji from a category if they've typed in a category, otherwise we'll do a random emoji from the whole list. `randomElement` expects an array, so we just need to give it an array of the whole emojis or an array of the categories and we'll have it!
+This should work for `encode`, `translate`, and `madlib`. We'll be writing some extra special functionality for `search` and `random` though.
 
-* Call `getCategory` on the user's input, that will give you a filtered-down array
-* If that array has 0 items in it, then they didn't type in a valid category, so call `randomElement` with the whole emojis array. This will give you an emoji _object_, so you'll want to add its `symbol` property to the results area.
-* If that array has some elements, then we want to do the same thing, but give `randomElement` the smaller, filtered-down categories array.
-* Test it by typing in a category like "animal" or "face", and hit submit a few times to make sure it's the only kind of emoji you get. Then try it with a non-category word (or nothing at all)--you should see a random emoji from all categories, if you nailed this one.
+To test that your functions are working, here are a few examples you can use:
+
+```
+┌──────────────┬───────────┬───────────────────
+│ RADIO BUTTON │ INPUT     │ EXPECTED OUTPUT
+├──────────────┼───────────┼───────────────────
+│ encode       │ aaaa      │ 👽👽👽👽
+│ madlib       │ face food │ (random face emoji) (random food emoji)
+│ translate    │ alien     │ 👽
+
+```
 
 ##### Search
 
+The search feature is going to work a bit differently from the previous three
+translation methods.
+
+Instead of the `search()` function returning us our output ready to be displayed,
+`search()` instead returns an array of objects that each contain an emoji that
+matches our search criteria. Before going any further, use `console.log` to examine what this array and the objects within look like specifically.
+
+Instead of simply setting the `.innerText` of our `<h1 id="results">` to this array
+of objects. We'll instead do the following:
+
+1. Clear the current content of our `<h1 id="results">` output (hint: use `.innerHTML`)
+1. Loop through each object in the array returned by the `search()` function. For each emoji object in the array:
+  1. Get the actual emoji (look at the `.symbol` attribute of each object)
+  1. Create a new DOM element (lets do a `<p>` tag), and set the element's `.innerText` to be the emoji
+  1. Append this new `<p>` element as a child of our `<h1 id="results">` 
+
+Finally, if `search()` returns an empty array, display text indicating that no
+emojis were found instead of doing the above steps.
+
+
 For search, we'll want to print every single emoji that matches the search criteria.
 
-* Calling `search` on our user's input will return an array of objects. Use `console.log` or look at `emojis.js` to see the format of these objects. Each object will have a `symbol` property which will contain the emoji that matches the search criteria.
-* After retrieving this array, loop through it, get each emoji, wrap it in a `<p>` tag, and then append it as a child to our `<h1 id="results"></h1>` element.
-* Before doing this, make sure to clear the content of the `<h1 id="results"></h1>` element (hint: use its `.innerHTML` property)
-* Okay, let's try searching with something like `corn`, which should give you unicorn and popcorn symbols. Or try the letter y, which should give you 8 emojis.
-* Finally, if no emojis match our search, instead of doing the above steps, simply display a message to the user in the  `<h1 id="results"></h1>` element that says no emojis were found.
+Test out your serach feature with something like `corn`, which should give you unicorn and popcorn emojis. Or try the letter y, which should give you 8 emojis.
+
+##### Random
+
+Finally, the random feature! The random feature should select a random other
+translation (either encode, madlib, translate, or search) and execute that
+functionality!
+
+To do this, remember that `Math.random()` will return a number between 0 and 1. You can adapt this to create a random integer generator (as seen in the dice rolling assignment).
+
+
+
 
 ### Stretch Goals
 
