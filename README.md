@@ -84,6 +84,8 @@ functionality!
 
 To do this, remember that `Math.random()` will return a number between 0 and 1. You can adapt this to create a random integer generator (as seen in the dice rolling assignment).
 
+From here, generate a random integer with a range equivalent to the number of translations you want to select from (four). One way forward from here would be to add code such that if the random integer equals 0, pick encode; if 1, pick translate, etc.
+
 #### Stretch Goals
 
 * Change the event listener so that it fires when they type something. You'll want to add it as an event listener on the input box, not the button. But what event? That's up to you to figure out! If you get this one done, you can get rid of the submit button, since it's totally unneeded!
