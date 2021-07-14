@@ -23,10 +23,6 @@ Let's start with `encode`.
 
 If you're not familiar with the term, "radio buttons" are mutually exclusive buttons. In this case, there's one for every feature of our app. Let's use them to let the user select which feature to use!
 
-To determine which radio button is pressed, we need to select ALL the radio buttons
-in the group, and loop through them. If a radio button is checked, its `.checked`
-property will be equal to `true`. (hint: use `querySelectorAll` and a `for` loop).
-
 Once you've determined which radio button was checked, you can determine its "value" with the `.value` property! In the case of the "Encode" radio button,
 this will be `"encode"`. You can view the values of the other radio buttons in
 the HTML.
