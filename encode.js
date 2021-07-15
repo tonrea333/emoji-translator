@@ -16,3 +16,14 @@ const encode = function(sentence) {
 
     return result;
 }
+
+
+
+//Once we've queried that element, grab its .value property containing the input's contents and store it in a variable.
+
+
+//h1 query
+const resultOutput = document.querySelector("#results");
+
+
+
